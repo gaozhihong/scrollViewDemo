@@ -17,6 +17,7 @@
 		392CEFC526CE576700BD0716 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CEFC426CE576700BD0716 /* main.m */; };
 		392CEFCF26CE576800BD0716 /* demo4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CEFCE26CE576800BD0716 /* demo4Tests.m */; };
 		392CEFDA26CE576800BD0716 /* demo4UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CEFD926CE576800BD0716 /* demo4UITests.m */; };
+		39C0244C26D4B772003ECFBA /* ATypeTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C0244A26D4B772003ECFBA /* ATypeTabCell.m */; };
 		39FB4E1126CF7D9C00059B7E /* BaseTypeTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FB4E1026CF7D9C00059B7E /* BaseTypeTabCell.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		392CEFD526CE576800BD0716 /* demo4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demo4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		392CEFD926CE576800BD0716 /* demo4UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demo4UITests.m; sourceTree = "<group>"; };
 		392CEFDB26CE576800BD0716 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39C0244A26D4B772003ECFBA /* ATypeTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATypeTabCell.m; sourceTree = "<group>"; };
+		39C0244B26D4B772003ECFBA /* ATypeTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATypeTabCell.h; sourceTree = "<group>"; };
 		39FB4E0F26CF7D9C00059B7E /* BaseTypeTabCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTypeTabCell.h; sourceTree = "<group>"; };
 		39FB4E1026CF7D9C00059B7E /* BaseTypeTabCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTypeTabCell.m; sourceTree = "<group>"; };
 		774F5EF2BEB1CE49EBD42CC5 /* libPods-demo4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demo4.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +125,8 @@
 		392CEFB126CE576500BD0716 /* demo4 */ = {
 			isa = PBXGroup;
 			children = (
+				39C0244B26D4B772003ECFBA /* ATypeTabCell.h */,
+				39C0244A26D4B772003ECFBA /* ATypeTabCell.m */,
 				392CEFB226CE576500BD0716 /* AppDelegate.h */,
 				392CEFB326CE576500BD0716 /* AppDelegate.m */,
 				392CEFB526CE576500BD0716 /* SceneDelegate.h */,
@@ -322,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				392CEFBA26CE576500BD0716 /* ViewController.m in Sources */,
+				39C0244C26D4B772003ECFBA /* ATypeTabCell.m in Sources */,
 				392CEFB426CE576500BD0716 /* AppDelegate.m in Sources */,
 				392CEFC526CE576700BD0716 /* main.m in Sources */,
 				39FB4E1126CF7D9C00059B7E /* BaseTypeTabCell.m in Sources */,

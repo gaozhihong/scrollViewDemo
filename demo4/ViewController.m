@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "BaseTypeTabCell.h"
+#import "ATypeTabCell.h"
 
 #import <UIImageView+WebCache.h>
 
@@ -47,6 +48,8 @@
 //    UIScrollView *_chidScrollV;
     
     UITableView *_firstTabV;
+    
+    UITableView *_secondTabV; //
     
 }
 
@@ -205,6 +208,8 @@
             
             if (i == 0 ) {
                 _firstTabV = tabV;
+            }else if(i ==1){
+                _secondTabV = tabV;
             }
         }
     }
@@ -221,6 +226,8 @@
     
     [tabV registerClass:BaseTypeTabCell.class forCellReuseIdentifier:@"BaseTypeTabCell"];
     
+    [tabV registerClass: ATypeTabCell.class forCellReuseIdentifier:@"ATypeTabCell"];
+    
     return  tabV;
     
 }
@@ -228,8 +235,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _firstTabV) {
         return 120;
+    }else if(tableView == _secondTabV){
+        return  250 ;
     }else{
-        return  80 ;
+        return 80;
     }
    
 }
@@ -246,6 +255,13 @@
         
         NSString *url1 = @"https://img2.baidu.com/it/u=1460337559,461722240&fm=26&fmt=auto&gp=0.jpg";
         cell.picUrl = indexPath.row %2 == 0 ? url0 : url1;
+        
+        return cell;
+    }else if(tableView == _secondTabV){
+        ATypeTabCell *cell  = [ tableView dequeueReusableCellWithIdentifier:@"ATypeTabCell"];
+        
+        NSString *url0= @"https://img1.baidu.com/it/u=2579940132,1296036844&fm=11&fmt=auto&gp=0.jpg";
+        cell.imgUrl = url0;
         
         return cell;
     }else{
