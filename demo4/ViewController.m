@@ -45,7 +45,11 @@
 
 @property(nonatomic,strong)UIView *menuView;
 
+@property(nonatomic,strong) UIView *smallMoveLine; //小滑动条
 
+@property(nonatomic, strong)NSMutableArray *btnsMutArr; //
+
+@property(nonatomic, strong)UIButton *previousBtn; //记录上一个view
 @end
 
 @implementation ViewController{
@@ -141,9 +145,23 @@
 
 #pragma mark -- 交互
 -(void)btnTap:(UIButton*)sender{
+    [_previousBtn setTitleColor:[UIColor linkColor] forState:(UIControlStateNormal)];
+    
     NSInteger  curIndex =(NSInteger)sender.tag;
 
     [_childScrollV setContentOffset:CGPointMake(curIndex *SCREEN_WIDTH, 0) animated:YES];
+    
+    CGPoint  cen =  _smallMoveLine.center;
+    
+    cen.x = sender.center.x;
+    
+    [UIView animateWithDuration:0.05 animations:^{
+        self->_smallMoveLine.center = cen;
+    }];
+    
+    [sender setTitleColor:[UIColor greenColor] forState:(UIControlStateNormal)];
+    _previousBtn  = sender;
+    
     
 }
 
@@ -178,6 +196,38 @@
     }
 }
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if (scrollView == _childScrollV) {
+       
+        NSInteger curIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
+        UIView *view = [self.btnsMutArr objectAtIndex:curIndex];
+        
+        CGPoint center = _smallMoveLine.center;
+        
+        center.x = view.center.x ;
+        
+        [UIView animateWithDuration:0.05 animations:^{
+           self->_smallMoveLine.center = center;
+        }];;
+        
+        [_previousBtn setTitleColor:[UIColor linkColor] forState:(UIControlStateNormal)];
+        
+        [(UIButton*)view setTitleColor:[UIColor greenColor] forState:(UIControlStateNormal)];
+        _previousBtn  = (UIButton*)view;
+    }
+}
+ //设置小滑动条
+-( void)setupMoveLineWithLength:(CGFloat)length{
+    if (!_smallMoveLine) {
+        return;
+    }
+    CGRect  vFrame= CGRectMake(0, 0, length, 1);
+    
+    _smallMoveLine = [[UIView alloc] initWithFrame:vFrame];
+    
+    _smallMoveLine.backgroundColor =[UIColor greenColor];
+    
+}
 #pragma mark --lazy
 -(UIView *)menuView{
     if (!_menuView) {
@@ -185,6 +235,7 @@
         _menuView =[[UIView alloc] initWithFrame:CGRectMake(0, Top_Vertical_Height-viewH, SCREEN_WIDTH ,viewH)];
         
         _menuView.backgroundColor =[UIColor cz_colorWithHex:0xFDF5E6];
+        _btnsMutArr =[NSMutableArray array];
         
         NSArray *titles = @[@"page1",@"page2",@"page3"];
         
@@ -206,8 +257,22 @@
             [btn setTitle:titles[i] forState:(UIControlStateNormal)];
             [btn addTarget:self action:@selector(btnTap:) forControlEvents:(UIControlEventTouchUpInside)];
             [_menuView addSubview:btn];
-        }
+            
+            [_btnsMutArr addObject:btn];
+            
+        } //
+        //
+       CGRect  vFrame= CGRectMake(0,viewH -1 , perW , 1);
+       
+       _smallMoveLine = [[UIView alloc] initWithFrame:vFrame];
+       
+       _smallMoveLine.backgroundColor =[UIColor greenColor];
+        
+        [_menuView addSubview:_smallMoveLine];
+        
+        [self btnTap: _btnsMutArr.firstObject];
     }
+    
     return _menuView;
 }
 -(UIScrollView *)childScrollV{
@@ -217,6 +282,8 @@
         _childScrollV = [[UIScrollView alloc] initWithFrame:CGRectMake(0, Top_Vertical_Height, SCREEN_WIDTH, h0)];
         _childScrollV.contentSize = CGSizeMake(3*SCREEN_WIDTH, 0);
         _childScrollV.scrollEnabled = YES;
+        
+        _childScrollV.delegate = self;
         
         _childScrollV.pagingEnabled = YES;
         
