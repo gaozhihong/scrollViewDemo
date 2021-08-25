@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F43D8689FB8FA054AB9066F /* libPods-demo4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 774F5EF2BEB1CE49EBD42CC5 /* libPods-demo4.a */; };
+		3929290526D5D5EB00245BC3 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3929290426D5D5EB00245BC3 /* UIColor+Extension.m */; };
 		392CEFB426CE576500BD0716 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CEFB326CE576500BD0716 /* AppDelegate.m */; };
 		392CEFB726CE576500BD0716 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CEFB626CE576500BD0716 /* SceneDelegate.m */; };
 		392CEFBA26CE576500BD0716 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CEFB926CE576500BD0716 /* ViewController.m */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		2A05D8D1C7F03C2ED2E2AF43 /* Pods-demo4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo4.release.xcconfig"; path = "Target Support Files/Pods-demo4/Pods-demo4.release.xcconfig"; sourceTree = "<group>"; };
+		3929290326D5D5EB00245BC3 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		3929290426D5D5EB00245BC3 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		392CEFAF26CE576500BD0716 /* demo4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demo4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392CEFB226CE576500BD0716 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		392CEFB326CE576500BD0716 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 		392CEFB126CE576500BD0716 /* demo4 */ = {
 			isa = PBXGroup;
 			children = (
+				3929290326D5D5EB00245BC3 /* UIColor+Extension.h */,
+				3929290426D5D5EB00245BC3 /* UIColor+Extension.m */,
 				39C0244B26D4B772003ECFBA /* ATypeTabCell.h */,
 				39C0244A26D4B772003ECFBA /* ATypeTabCell.m */,
 				392CEFB226CE576500BD0716 /* AppDelegate.h */,
@@ -329,6 +334,7 @@
 				392CEFBA26CE576500BD0716 /* ViewController.m in Sources */,
 				39C0244C26D4B772003ECFBA /* ATypeTabCell.m in Sources */,
 				392CEFB426CE576500BD0716 /* AppDelegate.m in Sources */,
+				3929290526D5D5EB00245BC3 /* UIColor+Extension.m in Sources */,
 				392CEFC526CE576700BD0716 /* main.m in Sources */,
 				39FB4E1126CF7D9C00059B7E /* BaseTypeTabCell.m in Sources */,
 				392CEFB726CE576500BD0716 /* SceneDelegate.m in Sources */,
@@ -506,6 +512,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = demo4/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,6 +531,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = demo4/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

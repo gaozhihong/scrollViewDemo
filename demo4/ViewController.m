@@ -8,7 +8,7 @@
 #import "ViewController.h"
 #import "BaseTypeTabCell.h"
 #import "ATypeTabCell.h"
-
+#import "UIColor+Extension.h"
 #import <UIImageView+WebCache.h>
 
 #define  SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
@@ -24,9 +24,15 @@
 //##获取导航条状态条高度 ##
 #define GetRectNavAndStatusHight \
 ({\
-  CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];     \
-   CGRect rectNav = self.navigationController.navigationBar.frame;\
-  ( rectStatus.size.height+ rectNav.size.height);\
+    CGFloat statusBar_height =0; \
+    if (@available(iOS 13.0, *)) { \
+    UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager; \
+     statusBar_height = statusBarManager.statusBarFrame.size.height; \
+    }else{  \
+        statusBar_height =[UIApplication sharedApplication].statusBarFrame.size.height;\
+    } ;\
+    CGRect rectNav = self.navigationController.navigationBar.frame;\
+    ( statusBar_height + rectNav.size.height);\
 })\
 
 @interface ViewController ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>{
@@ -47,12 +53,22 @@
 //
 //    UIScrollView *_chidScrollV;
     
-    UITableView *_firstTabV;
+    UITableView *_firstTabV; //
     
     UITableView *_secondTabV; //
     
 }
 
++ (CGFloat)getStatusBarHight {
+   float statusBarHeight = 0;
+   if (@available(iOS 13.0, *)) {
+       UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+       statusBarHeight = statusBarManager.statusBarFrame.size.height;
+   }else {
+       statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+   }
+   return statusBarHeight;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,9 +77,14 @@
     
     [self.navigationController.navigationBar setTranslucent:NO];
     
-    NSLog(@"nav_h == %f",GetRectNavAndStatusHight);
+    if (@available(iOS 13.0, *)) {
+        NSLog(@" 13 ==");
+    }else{
+        NSLog(@"小于13  ");
+    }
+   
     self.view.backgroundColor =[ UIColor lightGrayColor];
-    
+   
     
     self.title = @"ScrollDemoTest";
     
@@ -98,7 +119,7 @@
      //TopView
     UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, Top_Vertical_Height)];
     
-    topView.backgroundColor = [UIColor redColor];
+    topView.backgroundColor = [UIColor cz_colorWithHex:0xFFFFFF];
     
     NSString *atImgUrl = @"https://img1.baidu.com/it/u=2491541248,154379013&fm=15&fmt=auto&gp=0.jpg";
     
@@ -128,7 +149,7 @@
 
 #pragma mark -- scrollV delgate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-   
+    
     if ( [scrollView isKindOfClass:UITableView.class]) {
         NSLog(@"offset_y == %f",scrollView.contentOffset.y);
         if (scrollView.contentOffset.y > 0 ) {
@@ -163,7 +184,7 @@
         CGFloat viewH = 50;
         _menuView =[[UIView alloc] initWithFrame:CGRectMake(0, Top_Vertical_Height-viewH, SCREEN_WIDTH ,viewH)];
         
-        _menuView.backgroundColor =[UIColor lightGrayColor];
+        _menuView.backgroundColor =[UIColor cz_colorWithHex:0xFDF5E6];
         
         NSArray *titles = @[@"page1",@"page2",@"page3"];
         
@@ -191,7 +212,7 @@
 }
 -(UIScrollView *)childScrollV{
     if (!_childScrollV) {
-        CGFloat h0 = SCREEN_HEIGHT-GetRectNavAndStatusHight -BottomSafeAreaHeight -50;
+        CGFloat h0 =  SCREEN_HEIGHT-GetRectNavAndStatusHight -BottomSafeAreaHeight -50;
         
         _childScrollV = [[UIScrollView alloc] initWithFrame:CGRectMake(0, Top_Vertical_Height, SCREEN_WIDTH, h0)];
         _childScrollV.contentSize = CGSizeMake(3*SCREEN_WIDTH, 0);
